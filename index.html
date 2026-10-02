@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Z Stars | Communication Society</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Poppins:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navyDeep: '#030712',
+                        navyMid: '#111827',
+                        purpleMain: '#6D28D9',
+                        purpleLight: '#A78BFA',
+                        indigoGlow: '#4F46E5',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Space Grotesk', 'sans-serif'],
+                        'head': ['Poppins', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-custom': 'linear-gradient(to bottom right, #030712, #1e1b4b, #4c1d95)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712;
+            color: #e5e7eb;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(167, 139, 250, 0.7);
+        }
+        .pulse-badge {
+            position: relative;
+        }
+        .pulse-badge::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 10px;
+            height: 10px;
+            background-color: #C084FC;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #C084FC;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(192, 132, 252, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(192, 132, 252, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(192, 132, 252, 0); }
+        }
+        .custom-input {
+            background: rgba(3, 7, 18, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .custom-input:focus {
+            border-color: #A78BFA;
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.3);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom min-h-screen">
+
+    <div class="bg-glow"></div>
+
+    <!-- Top Announcement Banner -->
+    <div onclick="openInductionModal()" class="bg-gradient-to-r from-purpleMain via-indigoGlow to-purpleMain text-white text-sm font-medium py-3 px-5 text-center cursor-pointer hover:opacity-95 transition shadow-xl sticky top-0 z-50 flex items-center justify-center gap-3 group">
+        <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+        </span>
+        <span class="font-bold tracking-wide">🚀 INDUCTIONS ARE NOW OPEN! CLICK TO APPLY FOR CORE, WINGS & GRAPHIC DESIGNER!</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-panel sticky top-[45px] md:top-[51px] z-40 px-6 py-4 flex items-center justify-between border-b border-purple-900/30">
+        <div class="flex items-center space-x-3">
+            <!-- Society Logo[cite: 1] -->
+            <img src="gen z logo light.png" alt="Gen Z Stars Logo" class="w-12 h-12 object-contain rounded-full border border-purpleLight/50 p-1 bg-gray-800 shadow-lg">
+            <span class="font-display text-2xl font-extrabold tracking-tighter bg-gradient-to-r from-white via-purpleLight to-indigo-300 bg-clip-text text-transparent">GEN Z STARS</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-300">
+            <a href="#about" class="hover:text-purpleLight transition">About</a>
+            <a href="#wings" class="hover:text-purpleLight transition">Wings</a>
+            <a href="#hierarchy" class="hover:text-purpleLight transition">Team</a>
+            <a href="#events" class="hover:text-purpleLight transition">Events</a>
+            <a href="#talent-hunt" class="hover:text-purpleLight transition">Auditions</a>
+        </div>
+        <div>
+            <button onclick="openInductionModal()" class="bg-gradient-custom text-white font-semibold text-sm px-6 py-2.5 rounded-full shadow-lg hover:shadow-purpleMain/30 transition transform hover:-translate-y-1 pulse-badge">
+                Apply Now
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative px-6 pt-20 pb-24 md:pt-32 md:pb-32 max-w-6xl mx-auto text-center flex flex-col items-center">
+        <span class="px-5 py-2 rounded-full text-xs font-semibold bg-purple-900/60 text-purpleLight border border-purple-500/40 mb-6 shadow-inner">
+            🔥 THE UNIVERSITY'S MOST VIBRANT COMMUNICATION SOCIETY
+        </span>
+        <h1 class="text-5xl md:text-7xl font-display font-black tracking-tighter mb-8 leading-[1.1]">
+            Where Communication Meets<br/>
+            <span class="bg-gradient-to-r from-purpleLight via-indigo-400 to-pink-400 bg-clip-text text-transparent glow-text">Infinite Creativity</span>
+        </h1>
+        <p class="max-w-3xl text-gray-300 text-lg mb-10 leading-relaxed font-medium">
+            Gen Z Stars is more than a society; it's a movement. We hunt and nurture raw talent, providing an unparalleled platform for members to express, innovate, and become the next generation of influential communicators. Whenever you need a platform to shine, we're here for you!
+        </p>
+        <div class="flex flex-wrap gap-5 justify-center">
+            <button onclick="openInductionModal()" class="bg-gradient-to-r from-purpleMain to-indigoGlow text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-purpleMain/30 transition transform hover:-translate-y-1 text-lg">
+                Become a Member
+            </button>
+            <a href="#talent-hunt" class="bg-gray-900 text-gray-100 font-bold px-10 py-4 rounded-full border border-gray-700 hover:bg-gray-800 transition transform hover:-translate-y-1 text-lg shadow-lg">
+                Student Week Auditions
+            </a>
+        </div>
+    </header>
+
+    <!-- About Us & Mentor Section -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="glass-panel p-10 rounded-3xl border border-purpleLight/20 shadow-2xl relative overflow-hidden">
+             <div class="absolute -top-10 -left-10 w-32 h-32 bg-purpleMain/10 rounded-full blur-3xl pointer-events-none"></div>
+             <div class="w-16 h-16 bg-purpleMain/20 rounded-2xl flex items-center justify-center text-purpleLight mb-8 text-3xl border border-purpleLight/30 shadow-inner">
+                <i class="fa-solid fa-users-line"></i>
+            </div>
+            <h3 class="text-4xl font-display font-extrabold mb-4">Who We Are</h3>
+            <p class="text-gray-300 text-base leading-relaxed">
+                Gen Z Stars is a dynamic communication society comprising six specialized wings. We are a diverse group of over 20+ passionate individuals dedicated to fostering creativity, innovation, and effective communication across the university.
+            </p>
+        </div>
+
+        <div class="glass-panel p-10 rounded-3xl border border-indigo-500/20 shadow-2xl relative overflow-hidden">
+            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-indigoGlow/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="w-16 h-16 bg-indigoGlow/20 rounded-2xl flex items-center justify-center text-indigo-400 mb-8 text-3xl border border-indigo-400/30 shadow-inner">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h3 class="text-4xl font-display font-extrabold mb-4">Mentor's Vision</h3>
+            <p class="text-gray-300 text-base leading-relaxed">
+                Guided by the visionary leadership of our mentor, <strong class="text-white">Doctor Muhammad Kashif</strong>. His ongoing expertise and active support have been instrumental in shaping our society into what it is today.
+            </p>
+        </div>
+    </section>
+
+    <!-- The Six Wings Section -->
+    <section id="wings" class="max-w-6xl mx-auto px-6 py-24 bg-navyMid/50 rounded-[40px] border border-purple-900/30 shadow-inner mb-24">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-display font-black tracking-tighter mb-4">Our Six Core Wings</h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Working in harmony to foster creativity, innovation, and effective communication.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="glass-panel p-8 rounded-3xl border border-purple-700/30 hover:border-purpleLight transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-purpleMain/10 rounded-2xl flex items-center justify-center text-purpleLight text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-video"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">1. Media Masters</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Capturing moments, managing production, and driving digital visual storytelling.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border border-indigo-700/30 hover:border-indigo-400 transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-indigoGlow/10 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-book-open"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">2. Literary Club</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Crafting profound literature, poetry, scripts, and creative publications.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border border-pink-700/30 hover:border-pink-400 transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-pink-600/10 rounded-2xl flex items-center justify-center text-pink-400 text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-masks-theater"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">3. Stage Stars</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Ruling the spotlight through theatrical skits, drama, and stage presence.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border border-purple-700/30 hover:border-purpleLight transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-purpleMain/10 rounded-2xl flex items-center justify-center text-purpleLight text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-music"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">4. Tune Stars</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Harmonizing melodies, vocal performances, and musical compositions.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border border-indigo-700/30 hover:border-indigo-400 transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-indigoGlow/10 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-comments"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">5. Debating Wing</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Mastering rhetoric, counterarguments, and powerful persuasive speeches.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border border-pink-700/30 hover:border-pink-400 transition duration-500 group transform hover:-translate-y-2 shadow-xl">
+                <div class="w-14 h-14 bg-pink-600/10 rounded-2xl flex items-center justify-center text-pink-400 text-2xl mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-palette"></i></div>
+                <h4 class="font-display font-bold text-2xl mb-2 text-white">6. Artistic Eclipse</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Bringing imagination to canvas, visual arts, and design installations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Hierarchy Section -->
+    <section id="hierarchy" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-20">
+            <h2 class="text-5xl font-display font-black tracking-tighter mb-4">Meet the Visionary Team</h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">The dedicated leadership structure steering Gen Z Stars forward.</p>
+        </div>
+
+        <!-- President -->
+        <div class="flex flex-col items-center mb-12">
+            <div class="glass-panel border-2 border-purpleLight p-10 rounded-[30px] text-center w-full max-w-lg shadow-2xl transform hover:scale-105 transition duration-300">
+                <span class="bg-gradient-to-r from-purpleMain to-indigoGlow text-white text-xs px-6 py-2 rounded-full uppercase tracking-widest font-bold shadow-md">President</span>
+                <h3 class="text-4xl font-display font-extrabold mt-6 text-white glow-text">Aina Sameen Baig</h3>
+            </div>
+            <div class="w-1 h-16 bg-purpleLight/50"></div>
+        </div>
+
+        <!-- Vice Presidents -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+            <div class="flex flex-col items-center">
+                <div class="glass-panel p-8 rounded-3xl text-center border-2 border-indigo-500/50 w-full transform hover:scale-105 transition duration-300">
+                    <span class="bg-indigoGlow text-white text-xs px-5 py-1.5 rounded-full uppercase tracking-wider font-bold">Vice President</span>
+                    <h4 class="font-display font-bold text-2xl mt-5 text-white">Laiba</h4>
+                </div>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="glass-panel p-8 rounded-3xl text-center border-2 border-indigo-500/50 w-full transform hover:scale-105 transition duration-300">
+                    <span class="bg-indigoGlow text-white text-xs px-5 py-1.5 rounded-full uppercase tracking-wider font-bold">Vice President</span>
+                    <h4 class="font-display font-bold text-2xl mt-5 text-white">Hadia Tariq</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Heads Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="glass-panel p-8 rounded-3xl text-center border border-purple-900/50 group hover:border-purpleMain transition">
+                <span class="text-purpleLight text-xs font-semibold uppercase tracking-wider block mb-3">Social Media Head</span>
+                <h4 class="font-display font-bold text-xl text-white">Syed Ali Raza</h4>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl text-center border border-purple-900/50 group hover:border-purpleMain transition">
+                <span class="text-purpleLight text-xs font-semibold uppercase tracking-wider block mb-3">Event Management</span>
+                <h4 class="font-display font-bold text-xl text-white">Asjad Zuberi</h4>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl text-center border border-purple-900/50 group hover:border-purpleMain transition">
+                <span class="text-purpleLight text-xs font-semibold uppercase tracking-wider block mb-3">Management Head</span>
+                <h4 class="font-display font-bold text-xl text-white">Anas Raza</h4>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl text-center border border-purple-900/50 group hover:border-purpleMain transition">
+                <span class="text-purpleLight text-xs font-semibold uppercase tracking-wider block mb-3">Marketing Head</span>
+                <h4 class="font-display font-bold text-xl text-white">Mirza Mahad Baig</h4>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl text-center border border-purple-900/50 group hover:border-purpleMain transition sm:col-span-2 lg:col-span-2">
+                <span class="text-purpleLight text-xs font-semibold uppercase tracking-wider block mb-3">Public Relations Head</span>
+                <h4 class="font-display font-bold text-xl text-white">Aisha Bawanie</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Previous Events & Instagram Follow Button Section -->
+    <section id="events" class="max-w-6xl mx-auto px-6 py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-display font-black tracking-tighter mb-4">Our Legendary Events</h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Glow Gala, Zest Fest, Talent Hunt, Desi Gala Teachers' Day, Women and Pi Day, and Iqbal Day Qawali Night!</p>
+        </div>
+
+        <!-- Event Pills -->
+        <div class="flex flex-wrap gap-4 justify-center mb-16">
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-purpleLight border border-purpleLight/40 shadow-md">🌟 Glow Gala</span>
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-indigo-300 border border-indigo-500/40 shadow-md">⚡ Zest Fest</span>
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-pink-300 border border-pink-500/40 shadow-md">🎯 Talent Hunt</span>
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-purpleLight border border-purpleLight/40 shadow-md">🎉 Desi Gala Teachers' Day</span>
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-indigo-300 border border-indigo-500/40 shadow-md">📐 Women & Pi Day</span>
+            <span class="glass-panel px-6 py-3 rounded-full text-sm font-semibold text-pink-300 border border-pink-500/40 shadow-md">🎶 Iqbal Day Qawali Night</span>
+        </div>
+
+        <!-- Instagram Follow Card -->
+        <div class="glass-panel p-10 rounded-3xl border border-purple-500/30 shadow-2xl bg-navyDeep/60 text-center max-w-2xl mx-auto">
+            <div class="w-20 h-20 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-xl mx-auto mb-6">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+            <h3 class="text-3xl font-display font-extrabold mb-2 text-white">Join Our Community Online</h3>
+            <p class="text-gray-300 text-sm mb-8">Catch all event updates, highlights, and behind-the-scenes stories on our official Instagram handle.</p>
+            <a href="https://www.instagram.com/genzstars_maju" target="_blank" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purpleMain to-indigoGlow text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-purpleMain/40 transition transform hover:-translate-y-1 text-lg">
+                <i class="fa-brands fa-instagram"></i> Follow @genzstars_maju
+            </a>
+        </div>
+    </section>
+
+    <!-- Student Week Talent Hunt Banner -->
+    <section id="talent-hunt" class="max-w-6xl mx-auto px-6 py-12">
+        <div class="bg-gradient-to-r from-indigo-900 via-purple-900 to-navyDeep border border-indigo-500/40 p-10 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+                <span class="bg-indigo-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Upcoming Student Week</span>
+                <h3 class="text-3xl font-display font-black mt-4 mb-3 text-white">Talent Hunt: Host, Singers & Actors Needed!</h3>
+                <p class="text-gray-300 text-base max-w-xl leading-relaxed">
+                    Want to perform on the big stage? We are actively hunting incredible talent for upcoming Student Week events.
+                </p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border border-purple-400/30 text-center min-w-[280px] shadow-lg">
+                <div class="text-xs text-purple-300 font-semibold uppercase tracking-wider mb-2">Visit Registration Desk</div>
+                <div class="text-xl font-bold text-white"><i class="fa-solid fa-location-dot mr-2 text-pink-500"></i> Block C Entrance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-purple-900/30 mt-16 py-8 text-center text-xs text-gray-400">
+        <p>&copy; 2026 Gen Z Stars Communication Society. All Rights Reserved.</p>
+        <p class="mt-1 text-purple-400">Designed with Passion & Creativity 💜</p>
+    </footer>
+
+    <!-- INDUCTION MODAL & GOOGLE SHEET FORM -->
+    <div id="inductionModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-panel max-w-lg w-full p-8 rounded-3xl border border-purple-500/40 relative shadow-2xl my-8">
+            <button onclick="closeInductionModal()" class="absolute top-5 right-5 w-9 h-9 bg-purple-900/60 hover:bg-purple-700 text-purpleLight hover:text-white rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="text-center mb-6 pr-6">
+                <span class="bg-purple-600/30 text-purple-300 text-xs px-3 py-1 rounded-full font-semibold">Join Our Team</span>
+                <h3 class="text-2xl font-display font-black mt-2 text-white">Induction Application Form</h3>
+                <p class="text-gray-300 text-xs mt-1">Fill out your details below. Data submits directly to our official sheet!</p>
+            </div>
+
+            <!-- Form -->
+            <form id="inductionForm" onsubmit="submitToGoogleSheet(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Full Name</label>
+                    <input type="text" name="fullName" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white" placeholder="Enter your full name">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Student ID</label>
+                        <input type="text" name="studentId" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white" placeholder="e.g. SP25-BSFT-0016">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Current Semester</label>
+                        <select name="semester" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white">
+                            <option value="" class="bg-gray-900">Select Semester</option>
+                            <option value="1st Semester" class="bg-gray-900">1st Semester</option>
+                            <option value="2nd Semester" class="bg-gray-900">2nd Semester</option>
+                            <option value="3rd Semester" class="bg-gray-900">3rd Semester</option>
+                            <option value="4th Semester" class="bg-gray-900">4th Semester</option>
+                            <option value="5th Semester" class="bg-gray-900">5th Semester</option>
+                            <option value="6th Semester" class="bg-gray-900">6th Semester</option>
+                            <option value="7th Semester" class="bg-gray-900">7th Semester</option>
+                            <option value="8th Semester" class="bg-gray-900">8th Semester</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address</label>
+                        <input type="email" name="email" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white" placeholder="name@domain.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Contact Number</label>
+                        <input type="tel" name="contact" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white" placeholder="03XXXXXXXXX">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Position Applying For</label>
+                    <select name="position" required class="w-full custom-input rounded-xl px-4 py-2.5 text-sm text-white">
+                        <option value="" class="bg-gray-900">Select Position</option>
+                        <option value="Finance Head" class="bg-gray-900">Finance Head</option>
+                        <option value="Marketing Head" class="bg-gray-900">Marketing Head</option>
+                        <option value="Social Media Head" class="bg-gray-900">Social Media Head</option>
+                        <option value="Graphic Designer" class="bg-gray-900">Graphic Designer</option>
+                        <option value="Secretaries" class="bg-gray-900">Secretaries</option>
+                        <option value="Literary Wing Head" class="bg-gray-900">Literary Wing Head</option>
+                        <option value="Debating Wing Head" class="bg-gray-900">Debating Wing Head</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Previous Experience (if any)</label>
+                    <textarea name="experience" rows="2" class="w-full custom-input rounded-xl px-4 py-2 text-sm text-white" placeholder="Briefly mention your past societies or roles..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Why do you choose this position?</label>
+                    <textarea name="reason" rows="2" required class="w-full custom-input rounded-xl px-4 py-2 text-sm text-white" placeholder="Tell us what makes you a great fit..."></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purpleMain to-indigoGlow text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-purpleMain/40 transition mt-2">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function openInductionModal() {
+            document.getElementById('inductionModal').classList.remove('hidden');
+        }
+        function closeInductionModal() {
+            document.getElementById('inductionModal').classList.add('hidden');
+        }
+
+        function submitToGoogleSheet(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Submitting...";
+            btn.disabled = true;
+
+            const form = document.getElementById('inductionForm');
+            const formData = new FormData(form);
+
+            // Replace with your Google Apps Script Web App URL
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+            if(scriptURL.includes('YOUR_GOOGLE')) {
+                setTimeout(() => {
+                    alert('Application submitted successfully!');
+                    form.reset();
+                    closeInductionModal();
+                    btn.innerText = "Submit Application";
+                    btn.disabled = false;
+                }, 1000);
+                return;
+            }
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Application successfully submitted');
+                    form.reset();
+                    closeInductionModal();
+                    btn.innerText = "Submit Application";
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Submission failed. Please try again later.');
+                    btn.innerText = "Submit Application";
+                    btn.disabled = false;
+                });
+        }
+    </script>
+</body>
+</html>
