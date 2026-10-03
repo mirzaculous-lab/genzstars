@@ -313,7 +313,7 @@ textarea{min-height:90px;resize:vertical}
     </div>
     <div class="thanks" id="ok" hidden>
       <div class="burst"><b>&#9733;</b><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></div>
-      <h2>You're on our radar, <span id="okname"></span>!</h2>
+      <h2>You're in, <span id="okname"></span>!</h2>
       <p>Your application is in. Our team will contact you soon.</p>
       <button class="btn gold" id="done" type="button">Close</button>
     </div>
@@ -327,7 +327,7 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbysIGCsI8IWW_kqI-M6R
 const $=id=>document.getElementById(id);
 const dlg=$('dlg'),f=$('f'),msg=$('msg'),next=$('next'),back=$('back'),wiz=$('wiz'),ok=$('ok');
 const steps=[...f.querySelectorAll('.step')],nodes=[...document.querySelectorAll('.node')],segs=[...document.querySelectorAll('.seg')];
-const T=[["Who's the star?","Start with the basics."],["Pick your orbit","Which role fits you best?"],["Tell us your story","Last step. We read every single one."]];
+const T=[["Who's the star?","Start with the basics."],["Pick your desired role","Which role fits you best?"],["Tell us your story","Last step. We read every single one."]];
 let cur=0;
 function show(n){
   cur=n;
